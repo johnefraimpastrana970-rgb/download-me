@@ -26,7 +26,7 @@ The Google Fonts link needs internet; offline, the site falls back to Georgia an
 
 ## Deploy to GitHub Pages
 
-Push to the `main` branch to deploy the website automatically. The site will be available at `https://johnefraimpastrana970-rgb.github.io/download-me/`. The landing page's Android download link serves `downloads/Download-Me.apk`.
+Push to the `main` branch to deploy the website automatically. The site will be available at `https://johnefraimpastrana970-rgb.github.io/download-me/`. The landing page's Android download link serves `downloads/Download-Me.apk` (the ILOVEYOU app).
 
 ## Build the Android app
 
@@ -36,7 +36,7 @@ The `android/` folder contains a native Android WebView app. It packages the cur
 2. Open the `android/` folder in Android Studio and allow Gradle to sync.
 3. Or run `android\\gradlew.bat assembleDebug` from the project root. The debug APK is written to `android/app/build/outputs/apk/debug/app-debug.apk`.
 
-The build copies `index.html`, `css/`, `js/`, `images/`, and `audio/` from the project root automatically, so edits to the website are included in the next build. The app supports Android 6.0 and newer. Google Fonts still require an internet connection; the local content works offline.
+The build copies `index.html`, `css/`, `js/`, `images/`, and `audio/` from the project root automatically, so edits to the website are included in the next build. The app supports Android 6.0 and newer and uses the couple photo as its launcher icon. Google Fonts still require an internet connection; the local content works offline.
 
 ## Where to put photographs
 
