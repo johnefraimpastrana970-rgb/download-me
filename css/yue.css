@@ -1,0 +1,191 @@
+/* Yue is a self-contained companion; the main site styles remain unchanged. */
+.yue-companion {
+    --yue-cat-size: 108px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: calc(var(--yue-cat-size) + 46px);
+    height: var(--yue-cat-size);
+    transform: translate3d(var(--yue-x, 12px), var(--yue-y, 120px), 0);
+    pointer-events: none;
+    touch-action: none;
+}
+
+.yue-cat {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: var(--yue-cat-size);
+    height: var(--yue-cat-size);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    cursor: grab;
+    pointer-events: auto;
+    touch-action: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.yue-cat:active,
+.yue-companion.is-dragging .yue-cat { cursor: grabbing; }
+
+.yue-cat:focus-visible,
+.yue-sound-toggle:focus-visible {
+    outline: 2px solid #e9d5ff;
+    outline-offset: 3px;
+}
+
+.yue-cat-art {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 5px 8px rgba(13, 7, 23, 0.48));
+    transform-origin: 50% 85%;
+    animation: yue-breathe 3.8s ease-in-out infinite;
+}
+
+.yue-tail {
+    transform-box: fill-box;
+    transform-origin: 10% 70%;
+    animation: yue-tail-wag 2.2s ease-in-out infinite;
+}
+
+.yue-eye { animation: yue-blink 5.2s infinite; }
+
+.yue-speech {
+    position: absolute;
+    bottom: calc(100% - 9px);
+    left: 0;
+    z-index: 1;
+    display: none;
+    align-items: center;
+    gap: 0.55rem;
+    width: min(13.5rem, calc(100vw - 1.5rem));
+    padding: 0.55rem 0.65rem 0.55rem 0.8rem;
+    border: 1px solid rgba(196, 181, 253, 0.58);
+    border-radius: 14px 14px 14px 4px;
+    background: rgba(27, 16, 43, 0.97);
+    box-shadow: 0 8px 26px rgba(10, 5, 18, 0.4), 0 0 18px rgba(139, 92, 246, 0.2);
+    color: #f5f0ff;
+    font: 400 0.88rem/1.35 "Jost", system-ui, sans-serif;
+    pointer-events: none;
+}
+
+.yue-companion.is-right .yue-speech {
+    right: 0;
+    left: auto;
+    border-radius: 14px 14px 4px 14px;
+}
+
+.yue-companion.is-speaking .yue-speech { display: flex; }
+
+.yue-speech-text { flex: 1; }
+
+.yue-sound-toggle {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid rgba(196, 181, 253, 0.5);
+    border-radius: 50%;
+    background: rgba(139, 92, 246, 0.16);
+    color: #c4b5fd;
+    font: 500 1rem/1 "Jost", system-ui, sans-serif;
+    pointer-events: auto;
+    transform: translateY(-50%);
+}
+
+.yue-sound-toggle:hover { background: rgba(139, 92, 246, 0.34); box-shadow: 0 0 14px rgba(139, 92, 246, 0.45); }
+
+.yue-effects {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.yue-effect {
+    position: absolute;
+    top: 24%;
+    left: 50%;
+    color: #f0b5db;
+    font-size: 1.25rem;
+    line-height: 1;
+    text-shadow: 0 0 12px rgba(233, 213, 255, 0.8);
+    animation: yue-effect-pop 1s ease-out forwards;
+}
+
+.yue-effect:nth-child(2n) { color: #e9d5ff; font-size: 0.9rem; }
+.yue-effect:nth-child(3n) { color: #ffd1e7; font-size: 1.1rem; }
+
+.yue-companion.is-happy .yue-cat-art { animation: yue-hop 0.58s ease-in-out; }
+.yue-companion.is-playing .yue-cat-art { animation: yue-spin 0.72s ease-in-out; }
+.yue-companion.is-surprised .yue-cat-art { animation: yue-surprise 0.55s ease-out; }
+.yue-companion.is-petting .yue-cat-art { animation: yue-pet 0.48s ease-in-out; }
+.yue-companion.is-dragging .yue-cat-art { animation: yue-drag 0.65s ease-in-out infinite alternate; }
+.yue-companion.is-dropped .yue-cat-art { animation: yue-drop 0.48s ease-out; }
+.yue-companion.is-stretching .yue-cat-art { animation: yue-stretch 1.1s ease-in-out; }
+.yue-companion.is-sleeping .yue-cat-art { animation: yue-sleep 3s ease-in-out infinite; }
+.yue-companion.is-sleeping .yue-eye { opacity: 0; }
+.yue-companion.is-sleeping .yue-cat::after {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    color: #e9d5ff;
+    content: "z z";
+    font: italic 600 0.85rem/1 "Cormorant Garamond", Georgia, serif;
+    letter-spacing: 0.1em;
+}
+
+.yue-companion.is-surprised .yue-eye { transform: scale(1.45); }
+.yue-companion.is-dragging .yue-tail { animation-duration: 0.35s; }
+
+@keyframes yue-breathe { 50% { transform: translateY(-2px) scale(1.015); } }
+@keyframes yue-tail-wag { 50% { transform: rotate(12deg); } }
+@keyframes yue-blink {
+    0%, 43%, 47%, 86%, 90%, 100% { transform: scaleY(1); }
+    45%, 88% { transform: scaleY(0.12); }
+}
+@keyframes yue-hop { 50% { transform: translateY(-17px) rotate(-4deg); } }
+@keyframes yue-spin { 50% { transform: rotate(18deg) scale(1.08); } }
+@keyframes yue-surprise { 35% { transform: translateY(-9px) scale(1.08); } }
+@keyframes yue-pet { 50% { transform: rotate(-5deg) scale(1.04); } }
+@keyframes yue-drag { to { transform: rotate(7deg) scale(0.98); } }
+@keyframes yue-drop { 30% { transform: translateY(-12px) scale(1.06, 0.94); } }
+@keyframes yue-stretch { 40% { transform: scale(1.1, 0.91) translateY(3px); } }
+@keyframes yue-sleep { 50% { transform: translateY(2px) scale(0.98); } }
+@keyframes yue-effect-pop {
+    from { opacity: 0; transform: translate(-50%, 8px) scale(0.55); }
+    22% { opacity: 1; }
+    to { opacity: 0; transform: translate(calc(-50% + var(--yue-drift, 18px)), -52px) scale(1.15); }
+}
+
+@media (max-width: 600px) {
+    .yue-companion { --yue-cat-size: 88px; }
+    .yue-speech { font-size: 0.82rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .yue-cat-art,
+    .yue-tail,
+    .yue-eye,
+    .yue-companion.is-happy .yue-cat-art,
+    .yue-companion.is-playing .yue-cat-art,
+    .yue-companion.is-surprised .yue-cat-art,
+    .yue-companion.is-petting .yue-cat-art,
+    .yue-companion.is-dragging .yue-cat-art,
+    .yue-companion.is-dropped .yue-cat-art,
+    .yue-companion.is-stretching .yue-cat-art,
+    .yue-companion.is-sleeping .yue-cat-art,
+    .yue-effect {
+        animation: none !important;
+    }
+
+    .yue-cat-art { transition: none; }
+}
